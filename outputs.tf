@@ -14,13 +14,8 @@ output "vnet_address_space" {
 }
 
 output "subnet_ids" {
-  value       = [for s in azurerm_subnet.main : s.id]
+  value       = { for s in azurerm_subnet.main : s.name => s.id }
   description = "The list of subnet IDs"
-}
-
-output "subnet_names" {
-  value       = [for s in azurerm_subnet.main : s.name]
-  description = "The list of subnet names"
 }
 
 output "subnet_address_prefixes" {
